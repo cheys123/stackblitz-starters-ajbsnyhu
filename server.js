@@ -16,7 +16,7 @@ let users = [
   { id: 6, name: 'Alex', email: 'alex@msn.com', age: 21, salary: 33000 },
 ];
 
-// Root route
+
 app.get('/', (req, res) => {
   res.send({
     message: 'Available Routes',
@@ -29,19 +29,18 @@ app.get('/', (req, res) => {
   });
 });
 
-// GET all users
 app.get('/api/users', (req, res) => {
   res.json(users);
 });
 
-// GET user by ID
+
 app.get('/api/users/:id', (req, res) => {
   const user = users.find((u) => u.id === parseInt(req.params.id));
   if (!user) return res.status(404).send('User not found');
   res.json(user);
 });
 
-// POST new user
+
 app.post('/api/users', (req, res) => {
   const newUser = {
     id: users.length + 1,
@@ -54,7 +53,6 @@ app.post('/api/users', (req, res) => {
   res.status(201).json(newUser);
 });
 
-// DELETE user by ID
 app.delete('/api/delete/:id', (req, res) => {
   const userIndex = users.findIndex((u) => u.id === parseInt(req.params.id));
   if (userIndex === -1) return res.status(404).send('User not found');
@@ -63,7 +61,7 @@ app.delete('/api/delete/:id', (req, res) => {
   res.json(deletedUser);
 });
 
-// Start server
+
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
