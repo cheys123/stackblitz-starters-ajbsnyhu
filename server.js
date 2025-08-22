@@ -6,7 +6,7 @@ const PORT = 3000;
 
 app.use(bodyParser.json());
 
-// Sample Data
+
 let users = [
   { id: 1, name: 'Carmela', email: 'mela@gmail.com', age: 25, salary: 25000 },
   { id: 2, name: 'Joseph', email: 'joe@yahoo.com', age: 30, salary: 45000 },
@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
     ],
   });
 });
+
 
 app.get('/api/users', (req, res) => {
   res.json(users);
@@ -53,6 +54,7 @@ app.post('/api/users', (req, res) => {
   res.status(201).json(newUser);
 });
 
+
 app.delete('/api/delete/:id', (req, res) => {
   const userIndex = users.findIndex((u) => u.id === parseInt(req.params.id));
   if (userIndex === -1) return res.status(404).send('User not found');
@@ -63,5 +65,5 @@ app.delete('/api/delete/:id', (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(` Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
